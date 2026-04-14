@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Forge — Instant QR Code Generator</title>
+  <meta name="description" content="Generate beautiful QR codes instantly for websites, payments, videos, contacts, and more. Free, fast, and customizable." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Animated background -->
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+            <rect x="17" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+            <rect x="1" y="17" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+            <rect x="4" y="4" width="4" height="4" fill="currentColor" rx="0.5"/>
+            <rect x="20" y="4" width="4" height="4" fill="currentColor" rx="0.5"/>
+            <rect x="4" y="20" width="4" height="4" fill="currentColor" rx="0.5"/>
+            <rect x="17" y="17" width="4" height="4" fill="currentColor"/>
+            <rect x="23" y="17" width="4" height="4" fill="currentColor"/>
+            <rect x="17" y="23" width="4" height="4" fill="currentColor"/>
+            <rect x="23" y="23" width="4" height="4" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="logo-text">QR <span class="accent">Forge</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="#generator" class="nav-link">Generator</a>
+        <a href="#use-cases" class="nav-link">Use Cases</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="generator">
+    <div class="hero-content">
+      <div class="badge-pill">✦ Free &amp; Instant</div>
+      <h1 class="hero-title">Generate QR Codes<br /><span class="gradient-text">Instantly</span></h1>
+      <p class="hero-sub">Share websites, play videos, accept payments, share contacts — all with one scannable code.</p>
+    </div>
+  </section>
+
+  <!-- Main Generator -->
+  <main class="generator-section">
+    <div class="generator-card">
+
+      <!-- Type Tabs -->
+      <div class="type-tabs" id="type-tabs">
+        <button class="type-tab active" data-type="url" id="tab-url">
+          <span class="tab-icon">🌐</span> Website
+        </button>
+        <button class="type-tab" data-type="video" id="tab-video">
+          <span class="tab-icon">▶️</span> Video
+        </button>
+        <button class="type-tab" data-type="payment" id="tab-payment">
+          <span class="tab-icon">💳</span> Payment
+        </button>
+        <button class="type-tab" data-type="text" id="tab-text">
+          <span class="tab-icon">📝</span> Text
+        </button>
+        <button class="type-tab" data-type="email" id="tab-email">
+          <span class="tab-icon">📧</span> Email
+        </button>
+        <button class="type-tab" data-type="phone" id="tab-phone">
+          <span class="tab-icon">📞</span> Phone
+        </button>
+        <button class="type-tab" data-type="wifi" id="tab-wifi">
+          <span class="tab-icon">📶</span> Wi-Fi
+        </button>
+        <button class="type-tab" data-type="vcard" id="tab-vcard">
+          <span class="tab-icon">👤</span> Contact
+        </button>
+      </div>
+
+      <div class="generator-body">
+        <!-- Input Panel -->
+        <div class="input-panel">
+
+          <!-- URL -->
+          <div class="input-group active" id="form-url">
+            <label class="input-label">Website URL</label>
+            <input type="url" class="input-field" id="input-url" placeholder="https://example.com" />
+          </div>
+
+          <!-- Video -->
+          <div class="input-group" id="form-video">
+            <label class="input-label">Video URL (YouTube, Vimeo, etc.)</label>
+            <input type="url" class="input-field" id="input-video" placeholder="https://youtube.com/watch?v=..." />
+          </div>
+
+          <!-- Payment -->
+          <div class="input-group" id="form-payment">
+            <label class="input-label">Payment / UPI ID</label>
+            <input type="text" class="input-field" id="input-payment-upi" placeholder="yourname@upi" />
+            <label class="input-label" style="margin-top:16px">Amount (optional)</label>
+            <input type="number" class="input-field" id="input-payment-amount" placeholder="0.00" />
+            <label class="input-label" style="margin-top:16px">Note (optional)</label>
+            <input type="text" class="input-field" id="input-payment-note" placeholder="Payment for..." />
+          </div>
+
+          <!-- Text -->
+          <div class="input-group" id="form-text">
+            <label class="input-label">Text / Message</label>
+            <textarea class="input-field input-textarea" id="input-text" placeholder="Enter any text or message..."></textarea>
+          </div>
+
+          <!-- Email -->
+          <div class="input-group" id="form-email">
+            <label class="input-label">Email Address</label>
+            <input type="email" class="input-field" id="input-email-to" placeholder="recipient@example.com" />
+            <label class="input-label" style="margin-top:16px">Subject (optional)</label>
+            <input type="text" class="input-field" id="input-email-subject" placeholder="Subject..." />
+            <label class="input-label" style="margin-top:16px">Body (optional)</label>
+            <textarea class="input-field input-textarea" id="input-email-body" placeholder="Message body..."></textarea>
+          </div>
+
+          <!-- Phone -->
+          <div class="input-group" id="form-phone">
+            <label class="input-label">Phone Number</label>
+            <input type="tel" class="input-field" id="input-phone" placeholder="+91 98765 43210" />
+          </div>
+
+          <!-- WiFi -->
+          <div class="input-group" id="form-wifi">
+            <label class="input-label">Network Name (SSID)</label>
+            <input type="text" class="input-field" id="input-wifi-ssid" placeholder="MyWiFiNetwork" />
+            <label class="input-label" style="margin-top:16px">Password</label>
+            <input type="text" class="input-field" id="input-wifi-pass" placeholder="password123" />
+            <label class="input-label" style="margin-top:16px">Encryption</label>
+            <select class="input-field input-select" id="input-wifi-enc">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">None (Open)</option>
+            </select>
+          </div>
+
+          <!-- vCard -->
+          <div class="input-group" id="form-vcard">
+            <label class="input-label">Full Name</label>
+            <input type="text" class="input-field" id="input-vcard-name" placeholder="John Doe" />
+            <label class="input-label" style="margin-top:16px">Phone</label>
+            <input type="tel" class="input-field" id="input-vcard-phone" placeholder="+91 98765 43210" />
+            <label class="input-label" style="margin-top:16px">Email</label>
+            <input type="email" class="input-field" id="input-vcard-email" placeholder="john@example.com" />
+            <label class="input-label" style="margin-top:16px">Organization</label>
+            <input type="text" class="input-field" id="input-vcard-org" placeholder="Acme Corp" />
+            <label class="input-label" style="margin-top:16px">Website</label>
+            <input type="url" class="input-field" id="input-vcard-url" placeholder="https://johndoe.com" />
+          </div>
+
+          <!-- Customize Section -->
+          <div class="customize-section">
+            <div class="customize-header" id="customize-toggle">
+              <span>⚙️ Customize QR Code</span>
+              <span class="chevron" id="chevron">▼</span>
+            </div>
+            <div class="customize-body" id="customize-body">
+              <div class="customize-row">
+                <div class="customize-item">
+                  <label class="input-label">Foreground Color</label>
+                  <div class="color-row">
+                    <input type="color" id="color-fg" value="#0f172a" class="color-picker" />
+                    <span class="color-hex" id="color-fg-hex">#0f172a</span>
+                  </div>
+                </div>
+                <div class="customize-item">
+                  <label class="input-label">Background Color</label>
+                  <div class="color-row">
+                    <input type="color" id="color-bg" value="#ffffff" class="color-picker" />
+                    <span class="color-hex" id="color-bg-hex">#ffffff</span>
+                  </div>
+                </div>
+              </div>
+              <div class="customize-row">
+                <div class="customize-item full">
+                  <label class="input-label">Size: <span id="size-label">300px</span></label>
+                  <input type="range" id="qr-size" min="150" max="600" value="300" class="range-slider" />
+                </div>
+              </div>
+              <div class="customize-row">
+                <div class="customize-item full">
+                  <label class="input-label">Error Correction Level</label>
+                  <div class="ec-buttons">
+                    <button class="ec-btn active" data-level="L" id="ec-L">L — Low</button>
+                    <button class="ec-btn" data-level="M" id="ec-M">M — Medium</button>
+                    <button class="ec-btn" data-level="Q" id="ec-Q">Q — High</button>
+                    <button class="ec-btn" data-level="H" id="ec-H">H — Max</button>
+                  </div>
+                </div>
+              </div>
+              <!-- Presets -->
+              <div class="customize-row">
+                <div class="customize-item full">
+                  <label class="input-label">Color Presets</label>
+                  <div class="presets-row">
+                    <button class="preset-btn" data-fg="#0f172a" data-bg="#ffffff" title="Classic" style="background:#0f172a;"></button>
+                    <button class="preset-btn" data-fg="#7c3aed" data-bg="#f5f3ff" title="Purple" style="background:#7c3aed;"></button>
+                    <button class="preset-btn" data-fg="#0ea5e9" data-bg="#f0f9ff" title="Sky" style="background:#0ea5e9;"></button>
+                    <button class="preset-btn" data-fg="#059669" data-bg="#ecfdf5" title="Emerald" style="background:#059669;"></button>
+                    <button class="preset-btn" data-fg="#dc2626" data-bg="#fff1f2" title="Red" style="background:#dc2626;"></button>
+                    <button class="preset-btn" data-fg="#d97706" data-bg="#fffbeb" title="Amber" style="background:#d97706;"></button>
+                    <button class="preset-btn" data-fg="#ffffff" data-bg="#0f172a" title="Dark" style="background:linear-gradient(135deg,#0f172a 50%,#fff 50%);"></button>
+                    <button class="preset-btn" data-fg="#f472b6" data-bg="#fff0f7" title="Pink" style="background:#f472b6;"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="generate-btn" id="generate-btn">
+            <span class="btn-icon">✦</span> Generate QR Code
+          </button>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+          <div class="preview-card" id="preview-card">
+            <div class="qr-placeholder" id="qr-placeholder">
+              <div class="placeholder-grid">
+                <div class="placeholder-icon">
+                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                    <rect x="4" y="4" width="24" height="24" rx="4" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="6 3"/>
+                    <rect x="36" y="4" width="24" height="24" rx="4" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="6 3"/>
+                    <rect x="4" y="36" width="24" height="24" rx="4" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="6 3"/>
+                    <rect x="10" y="10" width="12" height="12" rx="2" fill="#6366f1" opacity="0.4"/>
+                    <rect x="42" y="10" width="12" height="12" rx="2" fill="#6366f1" opacity="0.4"/>
+                    <rect x="10" y="42" width="12" height="12" rx="2" fill="#6366f1" opacity="0.4"/>
+                    <rect x="36" y="36" width="12" height="12" rx="2" fill="#6366f1" opacity="0.3"/>
+                    <rect x="52" y="36" width="8" height="8" rx="1.5" fill="#6366f1" opacity="0.3"/>
+                    <rect x="36" y="52" width="8" height="8" rx="1.5" fill="#6366f1" opacity="0.3"/>
+                    <rect x="52" y="52" width="8" height="8" rx="1.5" fill="#6366f1" opacity="0.3"/>
+                  </svg>
+                </div>
+                <p class="placeholder-text">Your QR code<br/>will appear here</p>
+              </div>
+            </div>
+            <div class="qr-result" id="qr-result" style="display:none;">
+              <div id="qr-canvas-wrapper"></div>
+              <div class="qr-actions">
+                <button class="action-btn primary" id="download-png">⬇ Download PNG</button>
+                <button class="action-btn secondary" id="download-svg">⬇ Download SVG</button>
+                <button class="action-btn ghost" id="copy-btn">📋 Copy</button>
+              </div>
+              <div class="qr-data-label" id="qr-data-label"></div>
+            </div>
+          </div>
+
+          <!-- Info Cards -->
+          <div class="info-cards">
+            <div class="info-card">
+              <div class="info-icon">⚡</div>
+              <div>
+                <div class="info-title">Instant</div>
+                <div class="info-desc">No signup needed</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">🔒</div>
+              <div>
+                <div class="info-title">Private</div>
+                <div class="info-desc">Generated locally</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-icon">🎨</div>
+              <div>
+                <div class="info-title">Custom</div>
+                <div class="info-desc">Colors & sizes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Use Cases Section -->
+  <section class="use-cases" id="use-cases">
+    <h2 class="section-title">Everything you can <span class="gradient-text">encode</span></h2>
+    <p class="section-sub">QR codes unlock a world of instant connections</p>
+    <div class="use-case-grid">
+      <div class="use-case-card" data-type="url">
+        <div class="uc-icon">🌐</div>
+        <h3>Websites</h3>
+        <p>Direct users to any webpage, landing page, or online store instantly.</p>
+      </div>
+      <div class="use-case-card" data-type="video">
+        <div class="uc-icon">▶️</div>
+        <h3>Videos</h3>
+        <p>Link to tutorials, product demos, or YouTube / Vimeo content.</p>
+      </div>
+      <div class="use-case-card" data-type="payment">
+        <div class="uc-icon">💳</div>
+        <h3>Payments</h3>
+        <p>Accept UPI payments instantly — great for businesses & freelancers.</p>
+      </div>
+      <div class="use-case-card" data-type="wifi">
+        <div class="uc-icon">📶</div>
+        <h3>Wi-Fi Access</h3>
+        <p>Let guests connect to your network without typing passwords.</p>
+      </div>
+      <div class="use-case-card" data-type="vcard">
+        <div class="uc-icon">👤</div>
+        <h3>Contact Info</h3>
+        <p>Share your complete contact details with a single scan.</p>
+      </div>
+      <div class="use-case-card" data-type="email">
+        <div class="uc-icon">📧</div>
+        <h3>Email</h3>
+        <p>Pre-fill recipient, subject, and body for effortless contact.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-text">QR <span class="accent">Forge</span></span>
+      <span class="footer-copy">Generated securely in your browser — no data stored.</span>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
